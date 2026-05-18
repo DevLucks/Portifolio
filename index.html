@@ -1,0 +1,1110 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Odu — React & React Native Developer</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #0a0a0f;
+        --surface: #12121a;
+        --surface2: #1a1a28;
+        --accent: #f0a500;
+        --accent2: #ff6b35;
+        --text: #f0ede8;
+        --muted: #7c7a8a;
+        --border: rgba(240, 165, 0, 0.15);
+      }
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: radial-gradient(circle at top, rgba(240, 165, 0, 0.08), transparent 28%), radial-gradient(circle at 85% 15%, rgba(255, 107, 53, 0.06), transparent 20%), linear-gradient(180deg, #06060b 0%, #0d0d18 45%, #0a0a13 100%);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+        opacity: 0.4;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: radial-gradient(circle at 50% 110%, rgba(255, 255, 255, 0.05), transparent 22%), linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 55%);
+        pointer-events: none;
+        z-index: 9998;
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 80px 5vw 60px;
+        position: relative;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        backdrop-filter: blur(12px);
+        border-radius: 32px;
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        top: -20%;
+        right: -10%;
+        width: 700px;
+        height: 700px;
+        background: radial-gradient(
+          circle,
+          rgba(240, 165, 0, 0.08) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .hero::before {
+        content: '';
+        position: absolute;
+        bottom: -10%;
+        left: -5%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          rgba(255, 107, 53, 0.06) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(240, 165, 0, 0.1);
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        padding: 6px 16px;
+        font-size: 13px;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin-bottom: 32px;
+        animation: fadeUp 0.6s ease both;
+      }
+      .badge::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.4;
+          transform: scale(0.7);
+        }
+      }
+
+      h1 {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(2.8rem, 8vw, 6rem);
+        font-weight: 800;
+        line-height: 0.95;
+        letter-spacing: -0.03em;
+        margin-bottom: 28px;
+        animation: fadeUp 0.6s 0.1s ease both;
+      }
+      h1 .name {
+        display: block;
+        color: var(--text);
+      }
+      h1 .title {
+        display: block;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .hero-desc {
+        font-size: clamp(1rem, 2vw, 1.15rem);
+        color: var(--muted);
+        max-width: 560px;
+        margin-bottom: 48px;
+        font-weight: 300;
+        animation: fadeUp 0.6s 0.2s ease both;
+      }
+
+      .hero-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-bottom: 48px;
+        animation: fadeUp 0.6s 0.3s ease both;
+      }
+      .stat-num {
+        font-family: 'Syne', sans-serif;
+        font-size: 2.4rem;
+        font-weight: 800;
+        color: var(--text);
+        line-height: 1;
+      }
+      .stat-num span {
+        color: var(--accent);
+      }
+      .stat-label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        margin-top: 4px;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        animation: fadeUp 0.6s 0.4s ease both;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        border-radius: 8px;
+        font-family:
+          'DM Sans',
+          sans-serif;
+        font-size: 15px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.25s;
+        border: none;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #0a0a0f;
+      }
+      .btn-primary:hover {
+        background: #ffb830;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(240, 165, 0, 0.3);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+      .btn-ghost:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 90px 5vw;
+      }
+      .section-inner {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .section-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+      h2 {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        margin-bottom: 48px;
+      }
+      .divider {
+        width: 48px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 2px;
+        margin-bottom: 32px;
+      }
+
+      /* SKILLS */
+      .skills-bg {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+        gap: 16px;
+      }
+      .skill-card {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+        transition: all 0.25s;
+      }
+      .skill-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      }
+      .skill-icon {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+      }
+      .skill-name {
+        font-family: 'Syne', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 4px;
+      }
+      .skill-sub {
+        font-size: 12px;
+        color: var(--muted);
+      }
+      .skill-bar {
+        height: 3px;
+        background: rgba(255, 255, 255, 0.06);
+        border-radius: 2px;
+        margin-top: 12px;
+        overflow: hidden;
+      }
+      .skill-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        border-radius: 2px;
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 24px;
+      }
+      .project-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        overflow: hidden;
+        transition: all 0.3s;
+        position: relative;
+      }
+      .project-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+        border-color: rgba(240, 165, 0, 0.3);
+      }
+      .project-cover {
+        height: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cv-entertainment {
+        background: linear-gradient(135deg, #1a0030, #3d0060, #0d000d);
+      }
+      .cv-studify {
+        background: linear-gradient(135deg, #001a3d, #003d7a, #001030);
+      }
+      .cv-c1 {
+        background: linear-gradient(135deg, #1a0a00, #3d1f00, #602010);
+      }
+      .cv-c2 {
+        background: linear-gradient(135deg, #001a0a, #003d1f, #005030);
+      }
+      .cv-c3 {
+        background: linear-gradient(135deg, #1a1400, #3d3200, #605000);
+      }
+      .cv-c4 {
+        background: linear-gradient(135deg, #1a000a, #3d001f, #600030);
+      }
+      .cv-c5 {
+        background: linear-gradient(135deg, #001a1a, #003d3d, #005555);
+      }
+      .cv-delistor {
+        background: linear-gradient(135deg, #200a3d, #5f12c8, #1b0033);
+      }
+      .cv-superteam {
+        background: linear-gradient(135deg, #1a1435, #4725a8, #220e5e);
+      }
+      .cv-pioneer {
+        background: linear-gradient(135deg, #151b3d, #2b4fa1, #0d1f3f);
+      }
+      .cv-easyfame {
+        background: linear-gradient(135deg, #2d1b3d, #7a2ba8, #3d0f5e);
+      }
+      .cover-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: 24px 24px;
+      }
+      .cover-label {
+        position: relative;
+        z-index: 1;
+        font-family: 'Syne', sans-serif;
+        font-size: 2.6rem;
+      }
+      .project-body {
+        padding: 20px;
+      }
+      .project-tag {
+        display: inline-block;
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        background: rgba(240, 165, 0, 0.1);
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin-bottom: 10px;
+      }
+      .project-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .project-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-bottom: 14px;
+      }
+      .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        transition: gap 0.2s;
+      }
+      .project-link:hover {
+        gap: 10px;
+      }
+      .tag-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+      .tech-tag {
+        font-size: 10px;
+        background: rgba(255, 255, 255, 0.06);
+        color: var(--muted);
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      /* SERVICES */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+      }
+      .service-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        transition: all 0.25s;
+      }
+      .service-card:hover {
+        border-color: var(--accent);
+        background: var(--surface2);
+      }
+      .service-icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 12px;
+        background: rgba(240, 165, 0, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        margin-bottom: 16px;
+      }
+      .service-title {
+        font-family: 'Syne', sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .service-desc {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      /* CONTACT */
+      .contact-bg {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+      }
+      .contact-inner {
+        max-width: 900px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 64px;
+        align-items: start;
+      }
+      @media (max-width: 640px) {
+        .contact-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+      }
+      .contact-headline {
+        font-family: 'Syne', sans-serif;
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.1;
+        margin-bottom: 16px;
+      }
+      .contact-headline span {
+        color: var(--accent);
+      }
+      .contact-text {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+      }
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-decoration: none;
+        color: var(--text);
+        padding: 16px 20px;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        transition: all 0.25s;
+        font-size: 14px;
+      }
+      .contact-link:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateX(4px);
+      }
+      .cl-icon {
+        font-size: 1.3rem;
+      }
+      .cl-label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+      }
+      .cl-val {
+        font-weight: 500;
+      }
+
+      footer {
+        padding: 28px 5vw;
+        text-align: center;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+      }
+      footer strong {
+        color: var(--accent);
+      }
+
+      .print-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: var(--accent);
+        color: #0a0a0f;
+        border: none;
+        padding: 11px 20px;
+        border-radius: 8px;
+        font-family:
+          'DM Sans',
+          sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 100;
+        box-shadow: 0 4px 20px rgba(240, 165, 0, 0.4);
+        transition: all 0.2s;
+      }
+      .print-btn:hover {
+        transform: translateY(-2px);
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--accent);
+        border-radius: 2px;
+      }
+      @media print {
+        .print-btn {
+          display: none;
+        }
+        body::before {
+          display: none;
+        }
+      }
+      @media (max-width: 500px) {
+        .hero-stats {
+          gap: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HERO -->
+
+    <div class="hero">
+      <div class="hero-inner">
+        <div class="badge">Available for new projects</div>
+        <h1>
+          <span class="name">Lucky Odu</span>
+          <span class="title">React Developer</span>
+        </h1>
+        <p class="hero-desc">
+          6 years crafting fast, beautiful web & mobile experiences. React.js ·
+          React Native · Expo. From entertainment platforms to construction
+          business sites — delivering pixel-perfect, production-ready apps.
+        </p>
+
+        
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">6<span>+</span></div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">30<span>+</span></div>
+            <div class="stat-label">Projects Delivered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">100<span>%</span></div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+
+        <div class="cta-row">
+          <a href="#projects" class="btn btn-primary">View My Work ↓</a>
+          <a href="#contact" class="btn btn-ghost">Hire Me</a>
+        </div>
+        
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+
+    <section class="skills-bg">
+      <div class="section-inner">
+        <div class="section-label">What I work with</div>
+        <h2>Skills & Technologies</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-icon">⚛️</div>
+            <div class="skill-name">React.js</div>
+            <div class="skill-sub">Hooks, Context, Redux</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 98%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">📱</div>
+            <div class="skill-name">React Native</div>
+            <div class="skill-sub">iOS & Android</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🚀</div>
+            <div class="skill-name">Expo</div>
+            <div class="skill-sub">Managed & Bare Workflow</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 95%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🟨</div>
+            <div class="skill-name">JavaScript</div>
+            <div class="skill-sub">ES6+, TypeScript</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 97%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🎨</div>
+            <div class="skill-name">UI/UX</div>
+            <div class="skill-sub">Responsive, Tailwind, CSS</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 92%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🔥</div>
+            <div class="skill-name">Firebase</div>
+            <div class="skill-sub">Auth, Firestore, Storage</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 88%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🌐</div>
+            <div class="skill-name">REST APIs</div>
+            <div class="skill-sub">Integration & Design</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 93%"></div>
+            </div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-icon">🐙</div>
+            <div class="skill-name">Git & GitHub</div>
+            <div class="skill-sub">Version Control & CI/CD</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+
+    <section id="projects">
+      <div class="section-inner">
+        <div class="section-label">Portfolio</div>
+        <h2>Projects I've Built</h2>
+        <div class="projects-grid">
+          <!-- Delistor -->
+          <div class="project-card">
+            <div class="project-cover cv-delistor">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🛒</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Live Site</span>
+              <div class="project-title">Delistor</div>
+              <div class="project-desc">
+                A clean online directory and shopping experience built with modern web design, fast interactions, and a polished brand presence.
+              </div>
+              <a href="https://www.delistor.com" target="_blank" class="project-link">Visit site →</a>
+              <div class="tag-row">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">UX</span>
+                <span class="tech-tag">Animations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Superteam Academy -->
+          <div class="project-card">
+            <div class="project-cover cv-superteam">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🎓</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Learning Platform</span>
+              <div class="project-title">Superteam Academy</div>
+              <div class="project-desc">
+                A modern educational microsite for Superteam Academy, featuring polished layouts, responsive course previews, and fast page performance.
+              </div>
+              <a href="https://superteam-academy-mauve.vercel.app" target="_blank" class="project-link">Visit site →</a>
+              <div class="tag-row">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">Vercel</span>
+                <span class="tech-tag">Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pioneer Progressive Herald -->
+          <div class="project-card">
+            <div class="project-cover cv-pioneer">
+              <div class="cover-grid"></div>
+              <span class="cover-label">📰</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">News Website</span>
+              <div class="project-title">Pioneer Progressive Herald</div>
+              <div class="project-desc">
+                A polished news publication site built for rapid updates, clean readability, and reliable cross-device performance.
+              </div>
+              <a href="https://pioneerprogressivesherald.com/" target="_blank" class="project-link">Visit site →</a>
+              <div class="tag-row">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Editorial</span>
+                <span class="tech-tag">Responsive</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Blackbox Entertainment -->
+          <div class="project-card">
+            <div class="project-cover cv-entertainment">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🎬</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Live Site</span>
+              <div class="project-title">Blackbox Entertainment</div>
+              <div class="project-desc">
+                Full entertainment platform for a US-based entertainment
+                company. Dynamic content, modern UI, and seamless performance.
+              </div>
+              <a href="https://blackboxentertainmentus.com/" target="_blank" class="project-link">Visit site →</a>
+              <div class="tag-row">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">CSS</span>
+                <span class="tech-tag">API</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EasyFame -->
+          <div class="project-card">
+            <div class="project-cover cv-easyfame">
+              <div class="cover-grid"></div>
+              <span class="cover-label">⭐</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Mobile App</span>
+              <div class="project-title">EasyFame</div>
+              <div class="project-desc">
+                A feature-rich social media app built for engagement and performance. Fully responsive, smooth interactions, and optimized for all devices.
+              </div>
+              <a href="https://play.google.com/store/apps/details?id=com.lucky440.Easyfame&pcampaignid=web_share" target="_blank" class="project-link">Download on Google Play →</a>
+              <div class="tag-row">
+                <span class="tech-tag">React Native</span
+                ><span class="tech-tag">Responsive</span
+                ><span class="tech-tag">Social</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction 1 -->
+          <div class="project-card">
+            <div class="project-cover cv-c1">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🏗️</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Web · Construction</span>
+              <div class="project-title">PeakBuild Contractors</div>
+              <div class="project-desc">
+                Lead-generating website for a residential construction firm.
+                Services showcase, project gallery, and quote request form.
+              </div>
+              <span class="project-link" style="cursor: default; opacity: 0.6"
+                >Client Project</span
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span
+                ><span class="tech-tag">Tailwind</span
+                ><span class="tech-tag">Forms</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction 2 -->
+          <div class="project-card">
+            <div class="project-cover cv-c2">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🏠</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Web · Remodeling</span>
+              <div class="project-title">GreenCore Renovations</div>
+              <div class="project-desc">
+                Modern site for an eco-friendly renovation company. Before/after
+                project gallery, testimonials, and booking integration.
+              </div>
+              <span class="project-link" style="cursor: default; opacity: 0.6"
+                >Client Project</span
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span
+                ><span class="tech-tag">Animation</span
+                ><span class="tech-tag">CMS</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction 3 -->
+          <div class="project-card">
+            <div class="project-cover cv-c3">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🔨</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Web · General Contractor</span>
+              <div class="project-title">SteelRidge General</div>
+              <div class="project-desc">
+                Corporate site for a mid-size general contractor. Team profiles,
+                project portfolio, certifications, and client portal link.
+              </div>
+              <span class="project-link" style="cursor: default; opacity: 0.6"
+                >Client Project</span
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span
+                ><span class="tech-tag">Router</span
+                ><span class="tech-tag">Styled</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction 4 -->
+          <div class="project-card">
+            <div class="project-cover cv-c4">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🏢</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Web · Commercial Build</span>
+              <div class="project-title">Crimson Arc Construction</div>
+              <div class="project-desc">
+                High-converting landing page for a commercial construction
+                company. Includes project timeline tool and live estimate
+                calculator.
+              </div>
+              <span class="project-link" style="cursor: default; opacity: 0.6"
+                >Client Project</span
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span
+                ><span class="tech-tag">JS Logic</span
+                ><span class="tech-tag">SEO</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Construction 5 -->
+          <div class="project-card">
+            <div class="project-cover cv-c5">
+              <div class="cover-grid"></div>
+              <span class="cover-label">🌊</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Web · Landscaping</span>
+              <div class="project-title">BlueTide Landscaping</div>
+              <div class="project-desc">
+                Full branding + website for a landscaping & outdoor construction
+                firm. Seasonal gallery, service packages, and contact map.
+              </div>
+              <span class="project-link" style="cursor: default; opacity: 0.6"
+                >Client Project</span
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span
+                ><span class="tech-tag">Maps API</span
+                ><span class="tech-tag">Gallery</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </section>
+
+    <!-- SERVICES -->
+
+    <section class="skills-bg">
+      <div class="section-inner">
+        <div class="section-label">What I offer</div>
+        <h2>Services</h2>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">🌐</div>
+            <div class="service-title">Business Websites</div>
+            <div class="service-desc">
+              Fast, mobile-first websites for small businesses — construction,
+              retail, services. Built to convert visitors into clients.
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">📱</div>
+            <div class="service-title">Mobile Apps</div>
+            <div class="service-desc">
+              Cross-platform iOS & Android apps using React Native & Expo. From
+              MVP to full production release.
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🛒</div>
+            <div class="service-title">E-Commerce</div>
+            <div class="service-desc">
+              Online stores with cart, payment integration, and admin
+              dashboards. Ready to sell from day one.
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔌</div>
+            <div class="service-title">API Integration</div>
+            <div class="service-desc">
+              Connect your app to any third-party service — payments, maps,
+              bookings, CRM, social media, and more.
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">⚡</div>
+            <div class="service-title">Performance Optimization</div>
+            <div class="service-desc">
+              Speed up existing sites and apps. Better load times, SEO
+              improvements, and smoother user experience.
+            </div>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🔧</div>
+            <div class="service-title">Maintenance & Support</div>
+            <div class="service-desc">
+              Ongoing support, feature updates, bug fixes, and hosting
+              management. I stay with my clients long-term.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <section class="contact-bg" id="contact">
+      <div class="contact-inner">
+        <div>
+          <div class="section-label">Let's work together</div>
+          <div class="contact-headline">
+            Ready to build something <span>great?</span>
+          </div>
+          <p class="contact-text">
+            I'm <strong>Lucky Odu</strong>, a React & React Native developer
+            with 6+ years of experience. Whether you need a new website, a
+            mobile app, or want to upgrade what you have — let's talk.
+          </p>
+          <div class="cta-row">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          </div>
+        </div>
+        <div class="contact-links">
+          <a href="mailto:ordulucky440@gmail.com" class="contact-link">
+            <span class="cl-icon">✉️</span>
+            <div>
+              <div class="cl-label">Email</div>
+              <div class="cl-val">ordulucky440@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://wa.me/09122067994" target="_blank" class="contact-link">
+            <span class="cl-icon">💬</span>
+            <div>
+              <div class="cl-label">WhatsApp</div>
+              <div class="cl-val">09122067994</div>
+            </div>
+          </a>
+          <a
+            href="https://blackboxentertainmentus.com/"
+            target="_blank"
+            class="contact-link"
+          >
+            <span class="cl-icon">🌐</span>
+            <div>
+              <div class="cl-label">Live Project</div>
+              <div class="cl-val">blackboxentertainmentus.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/DevLucks" target="_blank" class="contact-link">
+            <span class="cl-icon">🐙</span>
+            <div>
+              <div class="cl-label">GitHub</div>
+              <div class="cl-val">DevLucks</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        ©️ 2025 <strong>Lucky Odu</strong> · React & React Native Developer ·
+        Built with passion 🔥
+      </p>
+    </footer>
+
+    <button class="print-btn" onclick="window.print()">🖨️ Save as PDF</button>
+  </body>
+</html>
