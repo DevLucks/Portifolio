@@ -30,6 +30,60 @@
       html {
         scroll-behavior: smooth;
       }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(240, 165, 0, 0.1);
+        padding: 16px 5vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-brand {
+        font-family: 'Syne', sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        color: var(--accent);
+        text-decoration: none;
+        transition: opacity 0.2s;
+      }
+
+      .nav-brand:hover {
+        opacity: 0.8;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 32px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        color: var(--text);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
       body {
         background:
           radial-gradient(
@@ -352,9 +406,9 @@
         position: relative;
       }
       .project-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
-        border-color: rgba(240, 165, 0, 0.3);
+        transform: translateY(-8px);
+        box-shadow: 0 24px 64px rgba(240, 165, 0, 0.2);
+        border-color: rgba(240, 165, 0, 0.4);
       }
       .project-cover {
         height: 150px;
@@ -659,6 +713,17 @@
     </style>
   </head>
   <body>
+    <!-- NAVIGATION -->
+    <nav>
+      <a href="#" class="nav-brand">Lucky Odu</a>
+      <ul class="nav-links">
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
     <!-- HERO -->
 
     <div class="hero">
@@ -698,7 +763,7 @@
 
     <!-- SKILLS -->
 
-    <section class="skills-bg">
+    <section class="skills-bg" id="skills">
       <div class="section-inner">
         <div class="section-label">What I work with</div>
         <h2>Skills & Technologies</h2>
@@ -1021,7 +1086,7 @@
 
     <!-- SERVICES -->
 
-    <section class="skills-bg">
+    <section class="skills-bg" id="services">
       <div class="section-inner">
         <div class="section-label">What I offer</div>
         <h2>Services</h2>
