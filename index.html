@@ -31,7 +31,18 @@
         scroll-behavior: smooth;
       }
       body {
-        background: radial-gradient(circle at top, rgba(240, 165, 0, 0.08), transparent 28%), radial-gradient(circle at 85% 15%, rgba(255, 107, 53, 0.06), transparent 20%), linear-gradient(180deg, #06060b 0%, #0d0d18 45%, #0a0a13 100%);
+        background:
+          radial-gradient(
+            circle at top,
+            rgba(240, 165, 0, 0.08),
+            transparent 28%
+          ),
+          radial-gradient(
+            circle at 85% 15%,
+            rgba(255, 107, 53, 0.06),
+            transparent 20%
+          ),
+          linear-gradient(180deg, #06060b 0%, #0d0d18 45%, #0a0a13 100%);
         color: var(--text);
         font-family: "DM Sans", sans-serif;
         font-size: 16px;
@@ -52,7 +63,13 @@
         content: "";
         position: fixed;
         inset: 0;
-        background: radial-gradient(circle at 50% 110%, rgba(255, 255, 255, 0.05), transparent 22%), linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 55%);
+        background:
+          radial-gradient(
+            circle at 50% 110%,
+            rgba(255, 255, 255, 0.05),
+            transparent 22%
+          ),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.02), transparent 55%);
         pointer-events: none;
         z-index: 9998;
       }
@@ -71,7 +88,7 @@
         border-radius: 32px;
       }
       .hero::after {
-        content: '';
+        content: "";
         position: absolute;
         top: -20%;
         right: -10%;
@@ -85,7 +102,7 @@
         pointer-events: none;
       }
       .hero::before {
-        content: '';
+        content: "";
         position: absolute;
         bottom: -10%;
         left: -5%;
@@ -123,7 +140,7 @@
         animation: fadeUp 0.6s ease both;
       }
       .badge::before {
-        content: '';
+        content: "";
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -143,7 +160,7 @@
       }
 
       h1 {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: clamp(2.8rem, 8vw, 6rem);
         font-weight: 800;
         line-height: 0.95;
@@ -180,7 +197,7 @@
         animation: fadeUp 0.6s 0.3s ease both;
       }
       .stat-num {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 2.4rem;
         font-weight: 800;
         color: var(--text);
@@ -209,9 +226,7 @@
         gap: 10px;
         padding: 14px 28px;
         border-radius: 8px;
-        font-family:
-          'DM Sans',
-          sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 15px;
         font-weight: 500;
         text-decoration: none;
@@ -256,7 +271,7 @@
         margin-bottom: 12px;
       }
       h2 {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: clamp(1.8rem, 4vw, 2.8rem);
         font-weight: 800;
         letter-spacing: -0.02em;
@@ -299,7 +314,7 @@
         margin-bottom: 10px;
       }
       .skill-name {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 14px;
         font-weight: 700;
         color: var(--text);
@@ -350,6 +365,17 @@
         position: relative;
         overflow: hidden;
       }
+      .project-cover.with-image {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .project-cover.with-image .cover-grid {
+        background: none;
+      }
+      .project-cover.with-image .cover-label {
+        display: none;
+      }
       .cv-entertainment {
         background: linear-gradient(135deg, #1a0030, #3d0060, #0d000d);
       }
@@ -383,6 +409,9 @@
       .cv-easyfame {
         background: linear-gradient(135deg, #2d1b3d, #7a2ba8, #3d0f5e);
       }
+      .cv-outbreak {
+        background: linear-gradient(135deg, #001a2e, #003d5c, #001a3d);
+      }
       .cover-grid {
         position: absolute;
         inset: 0;
@@ -394,7 +423,7 @@
       .cover-label {
         position: relative;
         z-index: 1;
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 2.6rem;
       }
       .project-body {
@@ -412,7 +441,7 @@
         margin-bottom: 10px;
       }
       .project-title {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 1.05rem;
         font-weight: 700;
         margin-bottom: 8px;
@@ -479,7 +508,7 @@
         margin-bottom: 16px;
       }
       .service-title {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: 1rem;
         font-weight: 700;
         margin-bottom: 8px;
@@ -510,7 +539,7 @@
         }
       }
       .contact-headline {
-        font-family: 'Syne', sans-serif;
+        font-family: "Syne", sans-serif;
         font-size: clamp(1.8rem, 4vw, 2.6rem);
         font-weight: 800;
         letter-spacing: -0.02em;
@@ -582,9 +611,7 @@
         border: none;
         padding: 11px 20px;
         border-radius: 8px;
-        font-family:
-          'DM Sans',
-          sans-serif;
+        font-family: "DM Sans", sans-serif;
         font-size: 13px;
         font-weight: 700;
         cursor: pointer;
@@ -647,7 +674,6 @@
           business sites — delivering pixel-perfect, production-ready apps.
         </p>
 
-        
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-num">6<span>+</span></div>
@@ -667,7 +693,6 @@
           <a href="#projects" class="btn btn-primary">View My Work ↓</a>
           <a href="#contact" class="btn btn-ghost">Hire Me</a>
         </div>
-        
       </div>
     </div>
 
@@ -742,6 +767,14 @@
               <div class="skill-bar-fill" style="width: 90%"></div>
             </div>
           </div>
+          <div class="skill-card">
+            <div class="skill-icon">🤖</div>
+            <div class="skill-name">AI & LLMs</div>
+            <div class="skill-sub">Integration & Prompt Engineering</div>
+            <div class="skill-bar">
+              <div class="skill-bar-fill" style="width: 85%"></div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -755,7 +788,12 @@
         <div class="projects-grid">
           <!-- Delistor -->
           <div class="project-card">
-            <div class="project-cover cv-delistor">
+            <div
+              class="project-cover with-image cv-delistor"
+              style="
+                background-image: url(&quot;images/delistor-site.png&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">🛒</span>
             </div>
@@ -763,9 +801,16 @@
               <span class="project-tag">Live Site</span>
               <div class="project-title">Delistor</div>
               <div class="project-desc">
-                A clean online directory and shopping experience built with modern web design, fast interactions, and a polished brand presence.
+                A clean online directory and shopping experience built with
+                modern web design, fast interactions, and a polished brand
+                presence.
               </div>
-              <a href="https://www.delistor.com" target="_blank" class="project-link">Visit site →</a>
+              <a
+                href="https://www.delistor.com"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">React</span>
                 <span class="tech-tag">UX</span>
@@ -776,7 +821,12 @@
 
           <!-- Superteam Academy -->
           <div class="project-card">
-            <div class="project-cover cv-superteam">
+            <div
+              class="project-cover with-image cv-superteam"
+              style="
+                background-image: url(&quot;images/superteam-academy-mauve-site.png&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">🎓</span>
             </div>
@@ -784,9 +834,16 @@
               <span class="project-tag">Learning Platform</span>
               <div class="project-title">Superteam Academy</div>
               <div class="project-desc">
-                A modern educational microsite for Superteam Academy, featuring polished layouts, responsive course previews, and fast page performance.
+                A modern educational microsite for Superteam Academy, featuring
+                polished layouts, responsive course previews, and fast page
+                performance.
               </div>
-              <a href="https://superteam-academy-mauve.vercel.app" target="_blank" class="project-link">Visit site →</a>
+              <a
+                href="https://superteam-academy-mauve.vercel.app"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">Next.js</span>
                 <span class="tech-tag">Vercel</span>
@@ -797,7 +854,12 @@
 
           <!-- Pioneer Progressive Herald -->
           <div class="project-card">
-            <div class="project-cover cv-pioneer">
+            <div
+              class="project-cover with-image cv-pioneer"
+              style="
+                background-image: url(&quot;images/newspaper-site.png&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">📰</span>
             </div>
@@ -805,9 +867,15 @@
               <span class="project-tag">News Website</span>
               <div class="project-title">Pioneer Progressive Herald</div>
               <div class="project-desc">
-                A polished news publication site built for rapid updates, clean readability, and reliable cross-device performance.
+                A polished news publication site built for rapid updates, clean
+                readability, and reliable cross-device performance.
               </div>
-              <a href="https://pioneerprogressivesherald.com/" target="_blank" class="project-link">Visit site →</a>
+              <a
+                href="https://pioneerprogressivesherald.com/"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">React</span>
                 <span class="tech-tag">Editorial</span>
@@ -818,7 +886,12 @@
 
           <!-- Blackbox Entertainment -->
           <div class="project-card">
-            <div class="project-cover cv-entertainment">
+            <div
+              class="project-cover with-image cv-entertainment"
+              style="
+                background-image: url(&quot;images/blackbox-entertainment-site.png&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">🎬</span>
             </div>
@@ -829,7 +902,12 @@
                 Full entertainment platform for a US-based entertainment
                 company. Dynamic content, modern UI, and seamless performance.
               </div>
-              <a href="https://blackboxentertainmentus.com/" target="_blank" class="project-link">Visit site →</a>
+              <a
+                href="https://blackboxentertainmentus.com/"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">React</span>
                 <span class="tech-tag">CSS</span>
@@ -840,7 +918,12 @@
 
           <!-- EasyFame -->
           <div class="project-card">
-            <div class="project-cover cv-easyfame">
+            <div
+              class="project-cover with-image cv-easyfame"
+              style="
+                background-image: url(&quot;images/easyfame-site.webp&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">⭐</span>
             </div>
@@ -848,9 +931,16 @@
               <span class="project-tag">Mobile App</span>
               <div class="project-title">EasyFame</div>
               <div class="project-desc">
-                A feature-rich social media app built for engagement and performance. Fully responsive, smooth interactions, and optimized for all devices.
+                A feature-rich social media app built for engagement and
+                performance. Fully responsive, smooth interactions, and
+                optimized for all devices.
               </div>
-              <a href="https://play.google.com/store/apps/details?id=com.lucky440.Easyfame&pcampaignid=web_share" target="_blank" class="project-link">Download on Google Play →</a>
+              <a
+                href="https://play.google.com/store/apps/details?id=com.lucky440.Easyfame&pcampaignid=web_share"
+                target="_blank"
+                class="project-link"
+                >Download on Google Play →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">React Native</span
                 ><span class="tech-tag">Responsive</span
@@ -859,9 +949,47 @@
             </div>
           </div>
 
+          <!-- Outbreak Watch -->
+          <div class="project-card">
+            <div
+              class="project-cover with-image cv-outbreak"
+              style="
+                background-image: url(&quot;images/climate-warning-site.png&quot;);
+              "
+            >
+              <div class="cover-grid"></div>
+              <span class="cover-label">📊</span>
+            </div>
+            <div class="project-body">
+              <span class="project-tag">Live Site</span>
+              <div class="project-title">Outbreak Watch</div>
+              <div class="project-desc">
+                Real-time disease outbreak surveillance system for Nigeria.
+                Tracks Cholera and Lassa Fever risk using climate data, ML
+                models, and live weather feeds with 74% accuracy.
+              </div>
+              <a
+                href="https://outbreak-watch-frontend.onrender.com/"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
+              <div class="tag-row">
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Data Viz</span>
+                <span class="tech-tag">ML</span>
+              </div>
+            </div>
+          </div>
+
           <!-- Construction 1 -->
           <div class="project-card">
-            <div class="project-cover cv-c1">
+            <div
+              class="project-cover with-image cv-c1"
+              style="
+                background-image: url(&quot;images/construction-site.png&quot;);
+              "
+            >
               <div class="cover-grid"></div>
               <span class="cover-label">🏗️</span>
             </div>
@@ -869,9 +997,17 @@
               <span class="project-tag">Web · Construction</span>
               <div class="project-title">Dedicated Construction Services</div>
               <div class="project-desc">
-                Website for Dedicated Construction Services LLC—a veteran- and woman-owned construction and logistics firm in Pennsylvania offering remodeling, licensed contracting, and commercial transport services.
+                Website for Dedicated Construction Services LLC—a veteran- and
+                woman-owned construction and logistics firm in Pennsylvania
+                offering remodeling, licensed contracting, and commercial
+                transport services.
               </div>
-              <a href="https://constructionzsite.netlify.app" target="_blank" class="project-link">Visit site →</a>
+              <a
+                href="https://constructionzsite.netlify.app"
+                target="_blank"
+                class="project-link"
+                >Visit site →</a
+              >
               <div class="tag-row">
                 <span class="tech-tag">Construction</span
                 ><span class="tech-tag">Logistics</span
@@ -879,105 +1015,7 @@
               </div>
             </div>
           </div>
-
-          <!-- Construction 2 -->
-          <div class="project-card">
-            <div class="project-cover cv-c2">
-              <div class="cover-grid"></div>
-              <span class="cover-label">🏠</span>
-            </div>
-            <div class="project-body">
-              <span class="project-tag">Web · Remodeling</span>
-              <div class="project-title">GreenCore Renovations</div>
-              <div class="project-desc">
-                Modern site for an eco-friendly renovation company. Before/after
-                project gallery, testimonials, and booking integration.
-              </div>
-              <span class="project-link" style="cursor: default; opacity: 0.6"
-                >Client Project</span
-              >
-              <div class="tag-row">
-                <span class="tech-tag">React</span
-                ><span class="tech-tag">Animation</span
-                ><span class="tech-tag">CMS</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Construction 3 -->
-          <div class="project-card">
-            <div class="project-cover cv-c3">
-              <div class="cover-grid"></div>
-              <span class="cover-label">🔨</span>
-            </div>
-            <div class="project-body">
-              <span class="project-tag">Web · General Contractor</span>
-              <div class="project-title">SteelRidge General</div>
-              <div class="project-desc">
-                Corporate site for a mid-size general contractor. Team profiles,
-                project portfolio, certifications, and client portal link.
-              </div>
-              <span class="project-link" style="cursor: default; opacity: 0.6"
-                >Client Project</span
-              >
-              <div class="tag-row">
-                <span class="tech-tag">React</span
-                ><span class="tech-tag">Router</span
-                ><span class="tech-tag">Styled</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Construction 4 -->
-          <div class="project-card">
-            <div class="project-cover cv-c4">
-              <div class="cover-grid"></div>
-              <span class="cover-label">🏢</span>
-            </div>
-            <div class="project-body">
-              <span class="project-tag">Web · Commercial Build</span>
-              <div class="project-title">Crimson Arc Construction</div>
-              <div class="project-desc">
-                High-converting landing page for a commercial construction
-                company. Includes project timeline tool and live estimate
-                calculator.
-              </div>
-              <span class="project-link" style="cursor: default; opacity: 0.6"
-                >Client Project</span
-              >
-              <div class="tag-row">
-                <span class="tech-tag">React</span
-                ><span class="tech-tag">JS Logic</span
-                ><span class="tech-tag">SEO</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Construction 5 -->
-          <div class="project-card">
-            <div class="project-cover cv-c5">
-              <div class="cover-grid"></div>
-              <span class="cover-label">🌊</span>
-            </div>
-            <div class="project-body">
-              <span class="project-tag">Web · Landscaping</span>
-              <div class="project-title">BlueTide Landscaping</div>
-              <div class="project-desc">
-                Full branding + website for a landscaping & outdoor construction
-                firm. Seasonal gallery, service packages, and contact map.
-              </div>
-              <span class="project-link" style="cursor: default; opacity: 0.6"
-                >Client Project</span
-              >
-              <div class="tag-row">
-                <span class="tech-tag">React</span
-                ><span class="tech-tag">Maps API</span
-                ><span class="tech-tag">Gallery</span>
-              </div>
-            </div>
-          </div>
         </div>
-        
       </div>
     </section>
 
@@ -1066,7 +1104,11 @@
               <div class="cl-val">ordulucky440@gmail.com</div>
             </div>
           </a>
-          <a href="https://wa.me/09122067994" target="_blank" class="contact-link">
+          <a
+            href="https://wa.me/09122067994"
+            target="_blank"
+            class="contact-link"
+          >
             <span class="cl-icon">💬</span>
             <div>
               <div class="cl-label">WhatsApp</div>
@@ -1074,17 +1116,21 @@
             </div>
           </a>
           <a
-            href="https://blackboxentertainmentus.com/"
+            href="https://outbreak-watch-frontend.onrender.com/"
             target="_blank"
             class="contact-link"
           >
             <span class="cl-icon">🌐</span>
             <div>
               <div class="cl-label">Live Project</div>
-              <div class="cl-val">blackboxentertainmentus.com</div>
+              <div class="cl-val">outbreak-watch-frontend</div>
             </div>
           </a>
-          <a href="https://github.com/DevLucks" target="_blank" class="contact-link">
+          <a
+            href="https://github.com/DevLucks"
+            target="_blank"
+            class="contact-link"
+          >
             <span class="cl-icon">🐙</span>
             <div>
               <div class="cl-label">GitHub</div>
