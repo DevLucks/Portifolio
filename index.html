@@ -697,6 +697,194 @@
         background: var(--accent);
         border-radius: 2px;
       }
+      /* HAMBURGER */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 1001;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+      .mobile-menu {
+        display: none;
+        position: fixed;
+        top: 57px;
+        left: 0;
+        right: 0;
+        background: rgba(10, 10, 15, 0.97);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        z-index: 999;
+        padding: 8px 5vw 16px;
+        flex-direction: column;
+      }
+      .mobile-menu.open {
+        display: flex;
+      }
+      .mobile-menu a {
+        color: var(--text);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 500;
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        transition: color 0.2s;
+      }
+      .mobile-menu a:last-child {
+        border-bottom: none;
+      }
+      .mobile-menu a:hover {
+        color: var(--accent);
+      }
+      @media (max-width: 768px) {
+        .nav-hamburger {
+          display: flex;
+        }
+      }
+
+      /* ABOUT */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 48px;
+        align-items: start;
+      }
+      @media (max-width: 640px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 28px;
+        }
+      }
+      .about-avatar {
+        width: 200px;
+        height: 200px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Syne', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 800;
+        color: #0a0a0f;
+        flex-shrink: 0;
+        box-shadow: 0 24px 64px rgba(240, 165, 0, 0.2);
+      }
+      .about-text h3 {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 14px;
+        color: var(--text);
+      }
+      .about-text p {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 14px;
+      }
+      .about-highlights {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 20px;
+      }
+      .about-highlight {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 8px 14px;
+        font-size: 13px;
+        color: var(--text);
+        font-weight: 500;
+      }
+      .about-highlight span {
+        margin-right: 6px;
+      }
+
+      /* CONTACT FORM */
+      .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .contact-form-heading {
+        font-family: 'Syne', sans-serif;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 4px;
+        color: var(--text);
+      }
+      .contact-form-sub {
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 16px;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .form-group label {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--muted);
+        font-weight: 600;
+      }
+      .form-group input,
+      .form-group textarea {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 16px;
+        color: var(--text);
+        font-family: 'DM Sans', sans-serif;
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+        resize: none;
+      }
+      .form-group input:focus,
+      .form-group textarea:focus {
+        border-color: var(--accent);
+      }
+      .form-group input::placeholder,
+      .form-group textarea::placeholder {
+        color: var(--muted);
+      }
+      .form-success {
+        display: none;
+        background: rgba(240, 165, 0, 0.1);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 20px;
+        color: var(--accent);
+        font-size: 14px;
+        text-align: center;
+        line-height: 1.7;
+      }
+
       @media print {
         .print-btn {
           display: none;
@@ -717,12 +905,25 @@
     <nav>
       <a href="#" class="nav-brand">Lucky Odu</a>
       <ul class="nav-links">
+        <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#about" onclick="closeMobileMenu()">About</a>
+      <a href="#projects" onclick="closeMobileMenu()">Projects</a>
+      <a href="#skills" onclick="closeMobileMenu()">Skills</a>
+      <a href="#services" onclick="closeMobileMenu()">Services</a>
+      <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+    </div>
 
     <!-- HERO -->
 
@@ -760,6 +961,44 @@
         </div>
       </div>
     </div>
+
+    <!-- ABOUT -->
+
+    <section id="about">
+      <div class="section-inner">
+        <div class="section-label">About me</div>
+        <h2>Who I Am</h2>
+        <div class="about-grid">
+          <div class="about-avatar">LO</div>
+          <div class="about-text">
+            <h3>React & React Native Developer</h3>
+            <p>
+              I'm Lucky Odu — a frontend-focused developer with 6+ years of
+              professional experience building fast, beautiful, and
+              production-ready web and mobile applications.
+            </p>
+            <p>
+              From entertainment platforms and social media apps to news sites,
+              e-commerce stores, and business websites — I specialize in turning
+              ideas into polished digital products that users love and clients
+              are proud of.
+            </p>
+            <p>
+              I work closely with my clients from planning through deployment,
+              and stay available long after launch for support, updates, and
+              growth.
+            </p>
+            <div class="about-highlights">
+              <div class="about-highlight"><span>📍</span>Based in Nigeria</div>
+              <div class="about-highlight"><span>⚡</span>Fast turnaround</div>
+              <div class="about-highlight"><span>💬</span>Clear communication</div>
+              <div class="about-highlight"><span>🔧</span>Long-term support</div>
+              <div class="about-highlight"><span>🌍</span>Remote-friendly</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SKILLS -->
 
@@ -1157,51 +1396,79 @@
             with 6+ years of experience. Whether you need a new website, a
             mobile app, or want to upgrade what you have — let's talk.
           </p>
-          <div class="cta-row">
-            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+          <div class="contact-links">
+            <a href="mailto:ordulucky440@gmail.com" class="contact-link">
+              <span class="cl-icon">✉️</span>
+              <div>
+                <div class="cl-label">Email</div>
+                <div class="cl-val">ordulucky440@gmail.com</div>
+              </div>
+            </a>
+            <a
+              href="https://wa.me/2349122067994"
+              target="_blank"
+              class="contact-link"
+            >
+              <span class="cl-icon">💬</span>
+              <div>
+                <div class="cl-label">WhatsApp</div>
+                <div class="cl-val">+234 912 206 7994</div>
+              </div>
+            </a>
+            <a
+              href="https://ng.linkedin.com/in/lucky-odu-8a7a99303"
+              target="_blank"
+              class="contact-link"
+            >
+              <span class="cl-icon">💼</span>
+              <div>
+                <div class="cl-label">LinkedIn</div>
+                <div class="cl-val">lucky-odu</div>
+              </div>
+            </a>
+            <a
+              href="https://github.com/DevLucks"
+              target="_blank"
+              class="contact-link"
+            >
+              <span class="cl-icon">🐙</span>
+              <div>
+                <div class="cl-label">GitHub</div>
+                <div class="cl-val">DevLucks</div>
+              </div>
+            </a>
           </div>
         </div>
-        <div class="contact-links">
-          <a href="mailto:ordulucky440@gmail.com" class="contact-link">
-            <span class="cl-icon">✉️</span>
-            <div>
-              <div class="cl-label">Email</div>
-              <div class="cl-val">ordulucky440@gmail.com</div>
-            </div>
-          </a>
-          <a
-            href="https://wa.me/09122067994"
-            target="_blank"
-            class="contact-link"
+        <div>
+          <div class="contact-form-heading">Send a Message</div>
+          <p class="contact-form-sub">Fill out the form and I'll reply within 24 hours.</p>
+          <form
+            class="contact-form"
+            id="contactForm"
+            action="https://formsubmit.co/ordulucky440@gmail.com"
+            method="POST"
           >
-            <span class="cl-icon">💬</span>
-            <div>
-              <div class="cl-label">WhatsApp</div>
-              <div class="cl-val">09122067994</div>
+            <input type="hidden" name="_subject" value="New Portfolio Inquiry">
+            <input type="hidden" name="_captcha" value="false">
+            <div class="form-group">
+              <label for="cf-name">Your Name</label>
+              <input id="cf-name" type="text" name="name" placeholder="John Smith" required>
             </div>
-          </a>
-          <a
-            href="https://outbreak-watch-frontend.onrender.com/"
-            target="_blank"
-            class="contact-link"
-          >
-            <span class="cl-icon">🌐</span>
-            <div>
-              <div class="cl-label">Live Project</div>
-              <div class="cl-val">outbreak-watch-frontend</div>
+            <div class="form-group">
+              <label for="cf-email">Email Address</label>
+              <input id="cf-email" type="email" name="email" placeholder="you@example.com" required>
             </div>
-          </a>
-          <a
-            href="https://github.com/DevLucks"
-            target="_blank"
-            class="contact-link"
-          >
-            <span class="cl-icon">🐙</span>
-            <div>
-              <div class="cl-label">GitHub</div>
-              <div class="cl-val">DevLucks</div>
+            <div class="form-group">
+              <label for="cf-message">Message</label>
+              <textarea id="cf-message" name="message" rows="5" placeholder="Tell me about your project..." required></textarea>
             </div>
-          </a>
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Send Message →
+            </button>
+          </form>
+          <div class="form-success" id="formSuccess">
+            ✓ Message sent! I'll get back to you within 24 hours.
+          </div>
         </div>
       </div>
     </section>
@@ -1214,5 +1481,48 @@
     </footer>
 
     <button class="print-btn" onclick="window.print()">🖨️ Save as PDF</button>
+
+    <script>
+      // Mobile menu
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+      });
+      function closeMobileMenu() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      }
+
+      // Contact form — AJAX submission via FormSubmit.co
+      // Note: on first submission FormSubmit will send you an activation email.
+      // Click the link in that email once to activate, then the form works permanently.
+      const contactForm = document.getElementById('contactForm');
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = contactForm.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        try {
+          const res = await fetch(contactForm.action, {
+            method: 'POST',
+            body: new FormData(contactForm),
+            headers: { Accept: 'application/json' },
+          });
+          if (res.ok) {
+            contactForm.style.display = 'none';
+            document.getElementById('formSuccess').style.display = 'block';
+          } else {
+            throw new Error();
+          }
+        } catch {
+          btn.textContent = original;
+          btn.disabled = false;
+          alert('Something went wrong. Please email me at ordulucky440@gmail.com');
+        }
+      });
+    </script>
   </body>
 </html>
